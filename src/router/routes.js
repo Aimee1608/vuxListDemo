@@ -1,9 +1,9 @@
 const routes =[
     {
         path:'/',
-        component: resolve => require(['../components/mainTem/Login.vue'],resolve),
-        meta:{auth:true},
-        name:'Login'
+        component: resolve => require(['../components/mainTem/Filtrate.vue'],resolve),
+        meta:{auth:true,keepAlive: false},
+        name:'Filtrate'
     },//首页
     {
         path:'/Home',
@@ -14,7 +14,7 @@ const routes =[
     {
         path:'/Login',
         component: resolve => require(['../components/mainTem/Login.vue'],resolve),
-        meta:{auth:true},
+        meta:{auth:true,keepAlive: false},
         name:'Login'
     },//最新案例
     {
@@ -38,13 +38,13 @@ const routes =[
     {
         path:'/Filtrate',
         component: resolve => require(['../components/mainTem/Filtrate.vue'],resolve),
-        meta:{auth:true,keepAlive: true},
+        meta:{auth:true,keepAlive: false},
         name:'Filtrate'
     },
     {//详情
         path:'/Detail',
         component: resolve => require(['../components/mainTem/Detail.vue'],resolve),
-        meta:{auth:true},
+        meta:{auth:true,keepAlive: false},
         name:'Detail'
     }
 ]

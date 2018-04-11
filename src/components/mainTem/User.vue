@@ -14,8 +14,10 @@
                     <h1><i class="fa fa-fw fa-star"></i>已收藏</h1>
                     <flexbox class="saveflexbox" :gutter="margin" wrap="wrap">
                          <flexbox-item class="flexItem" :span="1/2" v-for="item in collectList" :key="item.id" >
+                              <a :href="'#/Detail?id='+item.pro_id">
                                 <img :src="item.img_url?item.img_url:'src/img/case.png'" onerror="this.src='src/img/case.png'" alt="">
-                                <a :href="'#/Detail?id='+item.pro_id"><p>{{item.pro_name}}</p></a>
+                                <p>{{item.pro_name}}</p>
+                              </a>
                                 <i @click="CancelSaveFun(item.pro_id)" class="fa fa-fw fa-trash-o"></i>
                          </flexbox-item>
                     </flexbox>
@@ -57,7 +59,7 @@ import {UserCollectList,Collection,UserInformation,LoginOut,wxShare} from '../..
                 LoginOut(that.token,function(result){
                     // console.log('退出登录',result);
                     if(result.code==1001){
-                        sessionStorage.clear();
+                        localStorage.clear();
                         that.logoutType = 'success';
                         that.toastLogoutText="退出登录成功";
                         that.toastLogout=true;
@@ -111,9 +113,9 @@ import {UserCollectList,Collection,UserInformation,LoginOut,wxShare} from '../..
         },
         created() { //生命周期函数
           var that = this;
-          if(sessionStorage.getItem('token')){
-            console.log(sessionStorage.getItem('token'),99999);
-            that.token = sessionStorage.getItem('token');
+          if(localStorage.getItem('token')){
+            console.log(localStorage.getItem('token'),99999);
+            that.token = localStorage.getItem('token');
             that.getListFun();
             UserInformation(that.token,function(result){
               if(result.code==1001){

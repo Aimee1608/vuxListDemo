@@ -61,11 +61,11 @@ import {UserLogin,getRegister,wxShare} from '../../pubJS/server.js'
                 //正则匹配登录的手机号和口令
                 if(reg.test(this.phone)&&!isNaN(this.PasdCode)&&this.phone.toString().length==11&&this.PasdCode.toString().length==6){
                   UserLogin(this.phone,this.PasdCode,function(msg){
-                    //   console.log(msg);
+                      // console.log(msg);
                     // alert(msg.code);
                       if(msg.code==1001){//登录成功
-                        sessionStorage.clear();
-                        sessionStorage.setItem('token',msg.token);
+                        localStorage.clear();
+                        localStorage.setItem('token',msg.token);
                         that.$router.push({path:"/Filtrate"});
                       }else{//登录失败
                             that.isAlert = true;

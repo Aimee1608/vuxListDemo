@@ -28,7 +28,7 @@ import { Tabbar, TabbarItem} from 'vux'
 export default {
         data() { //选项 / 数据
             return {
-                index:sessionStorage.getItem('tabIndex')?parseInt(sessionStorage.getItem('tabIndex')):0,//当前展示的tabbar-item
+                index:localStorage.getItem('tabIndex')?parseInt(localStorage.getItem('tabIndex')):0,//当前展示的tabbar-item
                 query:'',
                 linkList:[//展示列表
                     'Home',

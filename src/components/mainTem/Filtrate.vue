@@ -53,7 +53,7 @@ import {getLabel,wxShare} from '../../pubJS/server.js'
         methods: { //事件处理器
                 GetitemFun(){//提交跳转到查询信息首页
                     //  console.log("提交");
-                     sessionStorage.setItem('money_id',this.Fvalue02);
+                     localStorage.setItem('money_id',this.Fvalue02);
                      this.$store.state.money_id = this.Fvalue02;
                      this.$router.replace({path:"/Home"});
                 },
@@ -71,10 +71,10 @@ import {getLabel,wxShare} from '../../pubJS/server.js'
         },
         created() { //生命周期函数
           var that = this;
-        //   alert('token'+sessionStorage.getItem('token'));
-          if(sessionStorage.getItem('token')){
-            console.log(sessionStorage.getItem('token'),99999);
-            getLabel(sessionStorage.getItem('token'),1,function(result){
+        //   alert('token'+localStorage.getItem('token'));
+          if(localStorage.getItem('token')){
+            console.log(localStorage.getItem('token'),99999);
+            getLabel(localStorage.getItem('token'),1,function(result){
               if(result.code == 1001){
                 that.list = result.data[0].data;
                 // console.log(result,that.list);

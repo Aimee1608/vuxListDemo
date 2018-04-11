@@ -24,15 +24,20 @@ router.beforeEach((to,from,next) => {
         if(to.name=='Login'){
             next();
         }else{
-            Vue.http.get("http://flow.xingyuanauto.com/FlowProject/MarketingTest/public/index.php/port/Login/UserIsLogin?token="+sessionStorage.getItem('token')+"&url="+to.name,{withCredentials: true}).then(response => response.json()).then(num => {
+          if(localStorage.getItem('token')){
+            Vue.http.get("http://flow.xingyuanauto.com/FlowProject/MarketingTest/public/index.php/port/Login/UserIsLogin?token="+localStorage.getItem('token')+"&url="+to.name,{withCredentials: true}).then(response => response.json()).then(num => {
                     // console.log('是否登录',num);
                     if(num.code==1001){
-                        next()
+                        next();
                     }else{
                         alert('您的token已超时，请重新登录');
-                        Vue.router.push({path:'/Login'});
+                        next('/Login');
                     }
             })
+          }else{
+            next('/Login');
+          }
+
         }
   　} else {
         console.log("请先登录");

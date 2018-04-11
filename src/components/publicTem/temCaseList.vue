@@ -196,7 +196,7 @@ import {ProListData,Collection,EventProList,getLabel,wxShare} from '../../pubJS/
                 })
               }
                 //二级分类列表
-                ProListData(that.token,that.pageId,that.money_id,that.category_id,that.content_id,that.pro_name,that.new_start,that.recommend_start,function(result){
+                ProListData(that.token,that.pageId,that.money_id,that.category_id,that.content_id,that.pro_name,that.new_start,that.recommend_start,'',function(result){
                 //   console.log('列表'+that.$route.name+'..............',result);
                   if(result.code==1001){
                     //获取列表追加
@@ -224,8 +224,8 @@ import {ProListData,Collection,EventProList,getLabel,wxShare} from '../../pubJS/
             },
             GoFiltrate(){//重新筛选推广金额
                 // this.$store.state.money_id=0;
-               sessionStorage.clear();
-               sessionStorage.setItem('token',this.token);
+               localStorage.clear();
+               localStorage.setItem('token',this.token);
                this.$router.push({path:'/Filtrate'});
             },
              SelectFun(type,label,value){//下拉选择分类
@@ -285,9 +285,9 @@ import {ProListData,Collection,EventProList,getLabel,wxShare} from '../../pubJS/
          },
         created() { //生命周期函数
              var that = this;
-              if(sessionStorage.getItem('token')){
-                  this.token = sessionStorage.getItem('token');
-                  getLabel(sessionStorage.getItem('token'),2,function(result){
+              if(localStorage.getItem('token')){
+                  this.token = localStorage.getItem('token');
+                  getLabel(localStorage.getItem('token'),2,function(result){
                     if(result.code == 1001){
                         that.listObj01 = result.data[0].data;
                         that.listObj02 = result.data[1].data;

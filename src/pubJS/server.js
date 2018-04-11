@@ -26,7 +26,7 @@ const getLabel = (token,level,callback) => {
 }
 
 //二级分类方案 + 筛选列表
-const ProListData = (token,pageId,money_id,category_id,content_id,pro_name,new_start,recommend_start,callback) =>{
+const ProListData = (token,pageId,money_id,category_id,content_id,pro_name,new_start,recommend_start,region,callback) =>{
     let url = portUrl + 'Programme/ProListData';
     let data = {
         'token':token,
@@ -36,7 +36,8 @@ const ProListData = (token,pageId,money_id,category_id,content_id,pro_name,new_s
         'content_id':content_id,//营销内容id
         'pro_name':pro_name,//	分案名称 搜索
         'new_start':new_start,
-        'recommend_start':recommend_start
+        'recommend_start':recommend_start,
+        'region':region
 
     }
     Vue.http.post(url,data,{withCredentials: true}).then(response => response.json()).then(num => {
@@ -106,14 +107,14 @@ const wxShare = (obj,callback)=>{
         var title = obj.title==undefined||obj.title==null?'泉水系统':obj.title;
         var link = obj.link==undefined||obj.link==null?window.location.href:obj.link;
         var desc = obj.desc==undefined||obj.desc==null?'泉水系统':obj.desc;
-        var imgUrl = obj.imgUrl==undefined||obj.imgUrl==null?getUrl()+'src/img/share.png':getUrl()+obj.imgUrl;
+        var imgUrl = obj.imgUrl==undefined||obj.imgUrl==null?'src/img/share.png':obj.imgUrl;
         var debug = obj.debug==true?true:false;
     }else{
         alert('请传分享参数');
     }
     //微信分享
     Vue.http.get("https://h5php.xingyuanauto.com/Flow/public/index.php/port/Aes/wx_token").then(response => response.json()).then(data => {
-        console.log('微信微信',data)
+        // console.log('微信微信',data)
         var wxdata = data;
         wxdata.debug = debug;
         wxdata.jsApiList= [

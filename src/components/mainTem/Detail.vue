@@ -83,7 +83,7 @@ import {ProDetails,  Collection,GetFraction,wxShare} from '../../pubJS/server.js
                         // console.log(i);
                         that.showall(url, i, id,pdf);
                         if(i==(pages-1)){
-                            that.loadshow = false;//隐藏加载loading                            
+                            that.loadshow = false;//隐藏加载loading
                         }
 
                     }
@@ -160,8 +160,8 @@ import {ProDetails,  Collection,GetFraction,wxShare} from '../../pubJS/server.js
         },
         created() { //生命周期函数
           var that = this;
-          if(sessionStorage.getItem('token')){
-            that.token = sessionStorage.getItem('token');
+          if(localStorage.getItem('token')){
+            that.token = localStorage.getItem('token');
             that.pro_id = that.$route.query.id==undefined?1:parseInt(that.$route.query.id);//获取传参的classId
             ProDetails(that.token,that.pro_id,function(result){
             //   console.log('详情',result);
